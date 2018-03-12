@@ -9,25 +9,6 @@ class Counter extends Component {
         counter: 0
     }
 
-    // counterChangedHandler = ( action, value ) => {
-    //     switch ( action ) {
-    //         case 'inc':
-    //             this.setState( ( prevState ) => { return { counter: prevState.counter + 1 } } )
-    //             break;
-    //         case 'dec':
-    //             this.setState( ( prevState ) => { return { counter: prevState.counter - 1 } } )
-    //             break;
-    //         case 'add':
-    //             this.setState( ( prevState ) => { return { counter: prevState.counter + value } } )
-    //             break;
-    //         case 'sub':
-    //             this.setState( ( prevState ) => { return { counter: prevState.counter - value } } )
-    //             break;
-    //         default:
-    //         console.log('default');
-    //     }
-    // }
-
     render () {
         return (
             <div>
@@ -36,23 +17,33 @@ class Counter extends Component {
                 <CounterControl label="Decrement"   clicked={this.props.onDecrCtr}  />
                 <CounterControl label="Add 10"       clicked={this.props.onAdd}  />
                 <CounterControl label="Subtract 10"  clicked={this.props.onSubs}  />
+                <hr/>
+                <button onClick={this.props.onStoreRes}>Result</button>
+                <ul>
+                  {this.props.storedResults.map(val => (
+                    <li key= {val.id} onClick={this.props.onDeleteRes}>{val.value}</li>
+                  ))}
+                </ul>
             </div>
         );
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state) => {//state
   return{
-      ctr: state.counter
+      ctr: state.counter,
+      storedResults : state.results,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {//actions
   return{
       onIncrCtr: () => dispatch({type: 'INCREMENT'}),
       onDecrCtr: () => dispatch({type: 'DECREMENT'}),
       onAdd: () => dispatch({type: 'ADD', val: 10}),
-      onSubs: () => dispatch({type: 'SUBTRACT', val: 10})
+      onSubs: () => dispatch({type: 'SUBTRACT', val: 10}),
+      onStoreRes: () => dispatch({type: 'STORE_RESULT'}),
+      onDeleteRes: () => dispatch({type: 'DELETE_RESULT'}),
   };
 };
 
