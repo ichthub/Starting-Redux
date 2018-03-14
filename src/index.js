@@ -1,14 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
-import reducer from './Store/reducer';
+import ResultReducer from './Store/Counters/result';
+import CounterReducer from './Store/Counters/counter';
+
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-const mystore = createStore(reducer);
+//merge the two reducers into one
+const rootReducer = combineReducers({
+  ctr: CounterReducer,
+  res: ResultReducer
+});
+
+const mystore = createStore(rootReducer);
 //provider is a helper component which will help to inject our store into react component
 ReactDOM.render(<Provider store = {mystore}><App /></Provider>, document.getElementById('root'));
 registerServiceWorker();
