@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import * as actionsCreators from '../../Store/actions/actions';//increament fun
+import * as actionsCreators from '../../Store/actions/exportsGrouping';//increament fun
 import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
 
