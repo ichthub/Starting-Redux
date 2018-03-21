@@ -1,4 +1,4 @@
-import * as actionTypes from '../actions'; // import everything in actions.js and put it in obj actionTypes
+import * as actionTypes from '../actions/actions'; // import everything in actions.js and put it in obj actionTypes
 //actionTypes is an obj
 const intiatState = {
   counter: 0,

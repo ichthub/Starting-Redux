@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import {increament} from '../../Store/actions/actions';//increament fun
+import * as actionsCreators from '../../Store/actions/actions';//increament fun
 import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
 
@@ -39,12 +39,12 @@ const mapStateToProps = (state) => {//state
 
 const mapDispatchToProps = (dispatch) => {//actions
   return{
-      onIncrCtr: () => dispatch(increament()), //pass increament and excute it
-      onDecrCtr: () => dispatch({type: actionTypes.DECREMENT}),
-      onAdd: () => dispatch({type: actionTypes.ADD, val: 10}),
-      onSubs: () => dispatch({type: actionTypes.SUBTRACT, val: 10}),
-      onStoreRes: (res) => dispatch({type: actionTypes.STORE_RESULT, result: res}),
-      onDeleteRes: (id) => dispatch({type: actionTypes.DELETE_RESULT, id}),
+      onIncrCtr: () => dispatch(actionsCreators.increament()), //pass increament and excute it
+      onDecrCtr: () => dispatch(actionsCreators.decreament()),
+      onAdd: () => dispatch(actionsCreators.add(10)),//payload given as arg
+      onSubs: () => dispatch(actionsCreators.subtract(10)),
+      onStoreRes: (res) => dispatch(actionsCreators.storedResults(res)),
+      onDeleteRes: (id) => dispatch(actionsCreators.deleteResult(id)),
   };
 };
 
